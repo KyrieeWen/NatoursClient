@@ -17,7 +17,6 @@ const stripePromise = loadStripe(
 )
 class Detail extends Component {
   componentDidMount() {
-    console.log(123)
     const { slug } = this.props.match.params
     this.props.getTour(slug)
   }
@@ -36,7 +35,6 @@ class Detail extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { tour, isError, isLoading, errInfo } = this.props
     if (isLoading)
       return (
@@ -52,7 +50,7 @@ class Detail extends Component {
         </div>
       )
     let startDate
-    if (!isError) {
+    if (!isError && tour) {
       startDate = new Date(tour.startDates[0]).toLocaleString('en-gb', {
         month: 'long',
         year: 'numeric',

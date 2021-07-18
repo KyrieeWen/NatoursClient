@@ -79,9 +79,6 @@ class MyTour extends Component {
                 rating ({ratingsQuantity})
               </span>
             </p>
-            {/* <a href={`/tours/${slug}`} className="btn btn--green btn--small">
-              Details
-            </a> */}
             <Link
               to={`/tour/${slug}`}
               params={`${slug}`}
