@@ -23,9 +23,14 @@ class Detail extends Component {
 
   bookTour = async (userId, tourId) => {
     // Get checkout session from API
-    const session = await axios(
-      `http://127.0.0.1:3000/api/v1/bookings/checkout-session/${userId}/${tourId}`
-    )
+    // const session = await axios(
+    //   `http://127.0.0.1:3000/api/v1/bookings/checkout-session/${userId}/${tourId}`
+    // )
+    const session = await axios({
+      method: 'POST',
+      url: `http://127.0.0.1:3000/api/v1/bookings/checkout-session/${userId}/${tourId}`,
+      withCredentials: true,
+    })
     const stripe = await stripePromise
     setTimeout(async function () {
       await stripe.redirectToCheckout({
@@ -49,13 +54,6 @@ class Detail extends Component {
           <span></span>
         </div>
       )
-    let startDate
-    if (!isError && tour) {
-      startDate = new Date(tour.startDates[0]).toLocaleString('en-gb', {
-        month: 'long',
-        year: 'numeric',
-      })
-    }
     const rates = [1, 2, 3, 4, 5]
     return isError ? (
       <Error errInfo={errInfo} />
@@ -102,7 +100,12 @@ class Detail extends Component {
                     <use xlinkHref="/img/icons.svg#icon-calendar"></use>
                   </svg>
                   <span className="overview-box__label">Next date</span>
-                  <span className="overview-box__text">{startDate}</span>
+                  <span className="overview-box__text">
+                    {new Date(tour.startDates[0]).toLocaleString('en-gb', {
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </span>
                 </div>
                 <div className="overview-box__detail">
                   <svg className="overview-box__icon">
