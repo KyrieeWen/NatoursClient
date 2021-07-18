@@ -1,0 +1,6 @@
+export const LOG_IN = 'header/login'
+export const LOG_OUT = 'header/logout'
+export const CHANGE_USER_INFO = 'header/change_user_info'
+export const UPDATE_USER_INFO = 'header/update_user_info'
+export const UPDATE_USER_PASS = 'header/update_user_pass'
+export const UPDATE_USER_TOUR = 'header/update_user_tour'
